@@ -1,7 +1,9 @@
 package com.instashibe;
 
 import com.facebook.react.ReactActivity;
-
+import com.facebook.react.ReactActivityDelegate; //GestureHandler
+import com.facebook.react.ReactRootView;//GestureHandler
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;//GestureHandler
 public class MainActivity extends ReactActivity {
 
   /**
@@ -12,4 +14,14 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "InstaShibe";
   }
+  @Override  //GestureHandler
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new ReactActivityDelegate(this, getMainComponentName()) {
+      @Override
+      protected ReactRootView createRootView() {
+        return new RNGestureHandlerEnabledRootView(MainActivity.this);
+      }
+    };
+  }
+
 }
